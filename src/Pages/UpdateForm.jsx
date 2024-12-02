@@ -144,8 +144,8 @@ const UpdateForm = () => {
           <input
             type="text"
             placeholder="Enter Package Name"
-            value={area}
-            onChange={(e) => setArea(e.target.value)}
+            value={packageVal}
+            onChange={(e) => setPackageVal(e.target.value)}
             className="w-full px-3 py-2 mb-5 rounded-md  border border-gray-300 focus:outline-none focus:border-gray-400"
           />
           <button

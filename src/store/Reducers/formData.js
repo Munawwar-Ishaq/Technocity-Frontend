@@ -64,23 +64,28 @@ const formData = createSlice({
     builder
       .addCase(addAreaApi.fulfilled, (state, { payload }) => {
         state.areas = payload.data;
-        state.loading = false;
+        state.areaLoading = false;
+        state.areaSuccess = true
         toast.success(payload.success);
       })
       .addCase(addAreaApi.pending, (state) => {
-        state.loading = true;
+        state.areaLoading = true;
+        state.areaSuccess = false;
       })
       .addCase(addAreaApi.rejected, (state, { payload }) => {
         state.loading = false;
+        state.areaSuccess = false;
         toast.error(payload.error);
       })
       .addCase(addPackageApi.fulfilled, (state, { payload }) => {
         state.packages = payload.data;
         state.packageLoading = false;
+        state.packageSuccess = true;
         toast.success(payload.success);
       })
       .addCase(addPackageApi.pending, (state) => {
         state.packageLoading = true;
+        state.packageSuccess = false;
       })
       .addCase(addPackageApi.rejected, (state, { payload }) => {
         state.packageLoading = false;
