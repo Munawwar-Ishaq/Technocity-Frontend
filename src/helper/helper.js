@@ -173,11 +173,11 @@ export const createStatements = (lastData, newData, editField) => {
     }
   });
 
-  // console.log("==============brefore======================");
-  // console.log("balancedAmount ", balancedAmount);
-  // console.log("totalSaleAmount ", totalSaleAmount);
-  // console.log("advanceBalancedAmount  ", advanceBalancedAmount);
-  // console.log("===================brefore=================");
+  console.log("==============brefore======================");
+  console.log("balancedAmount ", balancedAmount);
+  console.log("totalSaleAmount ", totalSaleAmount);
+  console.log("advanceBalancedAmount  ", advanceBalancedAmount);
+  console.log("===================brefore=================");
 
   if (balancedAmount > 0) {
     if (lastBalancedAmmount < 0) {
@@ -201,12 +201,12 @@ export const createStatements = (lastData, newData, editField) => {
     }
   }
 
-  // console.log("============After========================");
-  // console.log("Statement", statements);
-  // console.log("Total Sale Amount", totalSaleAmount);
-  // console.log("Advance Balanced Amount", advanceBalancedAmount);
-  // console.log("Balanced Amount", balancedAmount);
-  // console.log("=============After=======================");
+  console.log("============After========================");
+  console.log("Statement", statements);
+  console.log("Total Sale Amount", totalSaleAmount);
+  console.log("Advance Balanced Amount", advanceBalancedAmount);
+  console.log("Balanced Amount", balancedAmount);
+  console.log("=============After=======================");
 
   return { statements, totalSaleAmount, advanceBalancedAmount, balancedAmount };
 };

@@ -45,8 +45,9 @@ const EditUser = () => {
   const dispatch = useDispatch();
 
   const { areas, packages } = useSelector((state) => state.formData);
-  const { allUsers, editUser, isLoading, editUserSuccess } =
-    useSelector((state) => state.users);
+  const { allUsers, editUser, isLoading, editUserSuccess } = useSelector(
+    (state) => state.users
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -118,7 +119,9 @@ const EditUser = () => {
     }));
 
     if (value.trim() !== editUser[name].trim()) {
-      setIsEdited([...isEdited, name]);
+      if (!isEdited.includes(name)) {
+        setIsEdited([...isEdited, name]);
+      }
     } else {
       setIsEdited(isEdited.filter((item) => item !== name));
     }
@@ -183,7 +186,7 @@ const EditUser = () => {
     if (!formData.userStatus) {
       dispatch(
         editUserApi({
-          data: formData,
+          data: data,
           editedStatement: statements,
         })
       );
@@ -193,11 +196,10 @@ const EditUser = () => {
 
     e.preventDefault();
     if (validate()) {
-      console.log("Edited Form Data:", data);
       dispatch(
         editUserApi({
           data,
-          statements,
+          editedStatement: statements,
         })
       );
     } else {
@@ -715,8 +717,8 @@ const EditUser = () => {
               {areas &&
                 areas.map((a, i) => {
                   return (
-                    <option key={i} value={a.areaname}>
-                      {a.areaname}
+                    <option key={i} value={a.name}>
+                      {a.name}
                     </option>
                   );
                 })}

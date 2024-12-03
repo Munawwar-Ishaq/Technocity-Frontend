@@ -47,11 +47,12 @@ const UpdateForm = () => {
       }
     }
   };
+
   const handleAddPackage = () => {
     if (packageLoading) {
       toast.error("Please wait for Adding Package");
     } else {
-      if (area) {
+      if (packageVal) {
         dispatch(addPackageApi({ name: packageVal }));
       } else {
         toast.error("Please Enter Package Name");
@@ -60,7 +61,7 @@ const UpdateForm = () => {
   };
 
   return (
-    <GlobalDashboardPage targetTab={"area"}>
+    <GlobalDashboardPage targetTab={"update-form"}>
       <ContentHeader title={"Update Form"} />
       <div className="py-5 flex gap-3 px-3">
         {areas ? (

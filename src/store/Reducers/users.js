@@ -242,6 +242,7 @@ const user = createSlice({
 
         state.addUserSuccess = true;
         state.isLoading = false;
+        state.paymentReport = payload.paymentReport;
         state.usersCount = payload.data.allCount;
         state.newUserCounts = payload.data.newCount;
       })
@@ -275,10 +276,24 @@ const user = createSlice({
           let findIndex = state.allUsers.findIndex(
             (item) => item._id.toString() === payload.data._id.toString()
           );
-          if (findIndex > -1) {
-            state.allUsers[findIndex] = payload.data;
+          let findDeactiveIndex = state.allDeactiveUsers.findIndex(
+            (item) => item._id.toString() === payload.data._id.toString()
+          );
+
+          if (payload.data.active) {
+            if (findIndex > -1) {
+              state.allUsers[findIndex] = payload.data;
+            }
+            if (findDeactiveIndex > -1) {
+              state.allDeactiveUsers.splice(findDeactiveIndex, 1);
+            }
+          } else {
+            if (findIndex > -1) {
+              state.allUsers.splice(findIndex, 1);
+            }
           }
         }
+        state.paymentReport = payload.paymentReport;
         state.editUserSuccess = false;
       })
       .addCase(editUserApi.pending, (state) => {
@@ -300,7 +315,7 @@ const user = createSlice({
           );
         }
 
-        if(state.allDeactiveUsers){
+        if (state.allDeactiveUsers) {
           state.allDeactiveUsers = state.allDeactiveUsers.filter(
             (user) => user._id !== payload.data.id
           );
