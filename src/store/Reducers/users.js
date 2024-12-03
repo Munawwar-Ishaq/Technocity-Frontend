@@ -272,6 +272,7 @@ const user = createSlice({
         toast.success(payload.success);
         state.isLoading = false;
         state.editUserSuccess = true;
+        state.paymentReport = payload.paymentReport;
         if (state.allUsers) {
           let findIndex = state.allUsers.findIndex(
             (item) => item._id.toString() === payload.data._id.toString()
@@ -293,7 +294,7 @@ const user = createSlice({
             }
           }
         }
-        state.paymentReport = payload.paymentReport;
+        
         state.editUserSuccess = false;
       })
       .addCase(editUserApi.pending, (state) => {
